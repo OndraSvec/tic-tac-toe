@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+:root {
+  --light-slate: #f1f5f9;
+  --dark-slate: #e2e8f0;
+  --grid-buttons: repeat(3, minmax(5rem, 9vw));
+}
+
+html {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+body {
+  flex-grow: 1;
+  display: grid;
+  place-items: center;
+}
+
+.wrapper {
+  display: grid;
+  place-items: center;
+}
+
+.wrapper > .container {
+  display: grid;
+  grid-template-columns: var(--grid-buttons);
+  grid-template-rows: var(--grid-buttons);
+  gap: clamp(0.5rem, 0.5rem + 1vw, 1rem);
+}
+
+.wrapper > .container > .ttt-button {
+  background-color: var(--light-slate);
+}
+
+.wrapper > .container > .ttt-button:hover {
+  background-color: var(--dark-slate);
+}
+
+.wrapper > .container > .ttt-button:active {
+  scale: 0.95;
+}
