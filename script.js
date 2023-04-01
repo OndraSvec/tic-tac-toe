@@ -57,6 +57,45 @@ const gameBoard = (() => {
   return { render };
 })();
 
+const gameEnd = (() => {
+  const board = gameBoard.render();
+  const winConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  const endGame = () => {
+    if (
+      winConditions.some((array) =>
+        array.every(
+          (index) => board[index] === gameController.getPlayerOneMark()
+        )
+      )
+    ) {
+      return `${gameController.getPlayerOneName()} Wins!`;
+    }
+    if (
+      winConditions.some((array) =>
+        array.every(
+          (index) => board[index] === gameController.getPlayerTwoMark()
+        )
+      )
+    ) {
+      return `${gameController.getPlayerOneName()} Wins!`;
+    }
+    if (board.every((index) => index !== "")) {
+      return "It's a draw";
+    }
+  };
+  return { endGame };
+})();
+
 const displayGameBoard = (() => {
   const board = gameBoard.render();
   const updateUIBoard = () => {
