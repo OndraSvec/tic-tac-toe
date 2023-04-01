@@ -36,6 +36,8 @@ const gameController = (() => {
 const gameBoard = (() => {
   const board = ["", "", "", "", "", "", "", "", ""];
   const render = () => board;
+  const setBoard = () =>
+    board.forEach((item, index) => board.splice(index, 1, ""));
   const handleClick = (e) => {
     const cellNum = e.target.id.split("n")[1];
     const boardIndex = cellNum - 1;
@@ -54,7 +56,7 @@ const gameBoard = (() => {
     .querySelectorAll(".ttt-button")
     .forEach((button) => button.addEventListener("click", handleClick));
 
-  return { render };
+  return { render, setBoard };
 })();
 
 const gameEnd = (() => {
@@ -90,7 +92,7 @@ const gameEnd = (() => {
       return `${gameController.getPlayerTwoName()} Wins!`;
     }
     if (board.every((index) => index !== "")) {
-      return "It's a draw";
+      return "It's a draw!";
     }
   };
   return { endGame };
@@ -109,4 +111,14 @@ const displayGameBoard = (() => {
     });
   };
   return { updateUIBoard };
+})();
+
+const restartGame = (() => {
+  const handleRestartClick = () => {
+    gameBoard.setBoard();
+    displayGameBoard.updateUIBoard();
+  };
+
+  const restartButton = document.getElementById("restartGame");
+  restartButton.addEventListener("click", handleRestartClick);
 })();
