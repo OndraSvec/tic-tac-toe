@@ -62,7 +62,12 @@ const displayGameBoard = (() => {
   const updateUIBoard = () => {
     const buttons = document.querySelectorAll(".ttt-button");
 
-    buttons.forEach((button, index) => (button.textContent = board[index]));
+    buttons.forEach((button, index) => {
+      button.textContent = board[index];
+      if (button.textContent === gameController.getPlayerOneMark()) {
+        button.setAttribute("style", "color: var(--mark-playerOne);");
+      } else button.setAttribute("style", "color: var(--mark-playerTwo);");
+    });
   };
   return { updateUIBoard };
 })();

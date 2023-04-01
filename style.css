@@ -12,6 +12,9 @@
   --light-slate: #f1f5f9;
   --dark-slate: #e2e8f0;
   --grid-buttons: repeat(3, minmax(5rem, 9vw));
+  --buttons-content: clamp(4rem, 8vw, 8rem);
+  --mark-playerTwo: #0284c7;
+  --mark-playerOne: #b91c1c;
 }
 
 html {
@@ -40,6 +43,7 @@ body {
 
 .wrapper > .container > .ttt-button {
   background-color: var(--light-slate);
+  font-size: var(--buttons-content);
 }
 
 .wrapper > .container > .ttt-button:hover {
