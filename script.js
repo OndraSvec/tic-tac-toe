@@ -1,3 +1,9 @@
+const Player = (name, mark) => {
+  const getMark = () => mark;
+  const getName = () => name;
+  return { getName, getMark };
+};
+
 const gameBoard = (() => {
   const board = ["", "", "", "", "", "", "", "", ""];
   const render = () => board;
