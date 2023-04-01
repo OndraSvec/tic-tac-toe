@@ -87,7 +87,7 @@ const gameEnd = (() => {
         )
       )
     ) {
-      return `${gameController.getPlayerOneName()} Wins!`;
+      return `${gameController.getPlayerTwoName()} Wins!`;
     }
     if (board.every((index) => index !== "")) {
       return "It's a draw";
