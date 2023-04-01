@@ -54,3 +54,13 @@ const gameBoard = (() => {
 
   return { render };
 })();
+
+const displayGameBoard = (() => {
+  const board = gameBoard.render();
+  const updateUIBoard = () => {
+    const buttons = document.querySelectorAll(".ttt-button");
+
+    buttons.forEach((button, index) => (button.textContent = board[index]));
+  };
+  return { updateUIBoard };
+})();
