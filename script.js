@@ -39,7 +39,14 @@ const gameBoard = (() => {
   const handleClick = (e) => {
     const cellNum = e.target.id.split("n")[1];
     const boardIndex = cellNum - 1;
+    if (board[boardIndex] !== "") return;
+    if (gameController.getPlayerTurn() === gameController.getPlayerOneName()) {
+      board[boardIndex] = gameController.getPlayerOneMark();
+    } else {
+      board[boardIndex] = gameController.getPlayerTwoMark();
+    }
     render();
+    gameController.switchPlayers();
   };
   document
     .querySelectorAll(".ttt-button")
