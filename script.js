@@ -42,8 +42,10 @@ const gameBoard = (() => {
     if (board[boardIndex] !== "") return;
     if (gameController.getPlayerTurn() === gameController.getPlayerOneName()) {
       board[boardIndex] = gameController.getPlayerOneMark();
+      displayGameBoard.updateUIBoard();
     } else {
       board[boardIndex] = gameController.getPlayerTwoMark();
+      displayGameBoard.updateUIBoard();
     }
     render();
     gameController.switchPlayers();
