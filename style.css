@@ -13,6 +13,7 @@
   --dark-slate: #e2e8f0;
   --grid-buttons: repeat(3, minmax(5rem, 9vw));
   --buttons-content: clamp(4rem, 8vw, 8rem);
+  --gaps: clamp(0.5rem, 0.5rem + 1vw, 1rem);
   --mark-playerTwo: #0284c7;
   --mark-playerOne: #b91c1c;
 }
@@ -32,13 +33,14 @@ body {
 .wrapper {
   display: grid;
   place-items: center;
+  gap: calc(var(--gaps) * 2);
 }
 
 .wrapper > .container {
   display: grid;
   grid-template-columns: var(--grid-buttons);
   grid-template-rows: var(--grid-buttons);
-  gap: clamp(0.5rem, 0.5rem + 1vw, 1rem);
+  gap: var(--gaps);
 }
 
 .wrapper > .container > .ttt-button {
@@ -51,5 +53,19 @@ body {
 }
 
 .wrapper > .container > .ttt-button:active {
+  scale: 0.95;
+}
+
+.wrapper > #restartGame {
+  background-color: white;
+  font-size: calc(var(--buttons-content) / 2);
+  color: var(--mark-playerTwo);
+  padding: 0.75rem;
+}
+
+.wrapper > #restartGame:hover {
+  background-color: var(--light-slate);
+}
+.wrapper > #restartGame:active {
   scale: 0.95;
 }
