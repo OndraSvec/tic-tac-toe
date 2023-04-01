@@ -4,6 +4,35 @@ const Player = (name, mark) => {
   return { getName, getMark };
 };
 
+const gameController = (() => {
+  const playerOne = Player("Player One", "X");
+  const playerTwo = Player("Player Two", "O");
+
+  const getPlayerOneMark = () => playerOne.getMark();
+  const getPlayerTwoMark = () => playerTwo.getMark();
+
+  const getPlayerOneName = () => playerOne.getName();
+  const getPlayerTwoName = () => playerTwo.getName();
+
+  let activePlayer = getPlayerOneName();
+
+  const switchPlayers = () => {
+    if (activePlayer === getPlayerOneName()) activePlayer = getPlayerTwoName();
+    else activePlayer = getPlayerOneName();
+  };
+
+  const getPlayerTurn = () => activePlayer;
+
+  return {
+    getPlayerOneName,
+    getPlayerOneMark,
+    getPlayerTwoName,
+    getPlayerTwoMark,
+    getPlayerTurn,
+    switchPlayers,
+  };
+})();
+
 const gameBoard = (() => {
   const board = ["", "", "", "", "", "", "", "", ""];
   const render = () => board;
