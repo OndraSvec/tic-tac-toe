@@ -154,7 +154,9 @@ const announceWinner = (() => {
       restartGame.handleRestartClick();
     }
   };
-  window.addEventListener("click", removeAnnouncer);
+  ["click", "touchstart"].forEach((event) =>
+    window.addEventListener(event, removeAnnouncer)
+  );
 
   return { displayWinner };
 })();
