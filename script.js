@@ -44,13 +44,14 @@ const gameBoard = (() => {
     if (board[boardIndex] !== "" || gameEnd.endGame()) return;
     if (gameController.getPlayerTurn() === gameController.getPlayerOneName()) {
       board[boardIndex] = gameController.getPlayerOneMark();
-      displayGameBoard.updateUIBoard();
     } else {
       board[boardIndex] = gameController.getPlayerTwoMark();
-      displayGameBoard.updateUIBoard();
     }
     render();
+    displayGameBoard.updateUIBoard();
+    announceWinner.displayWinner();
     gameController.switchPlayers();
+    e.stopPropagation();
   };
   document
     .querySelectorAll(".ttt-button")
@@ -121,4 +122,38 @@ const restartGame = (() => {
 
   const restartButton = document.getElementById("restartGame");
   restartButton.addEventListener("click", handleRestartClick);
+  return { handleRestartClick };
+})();
+
+const announceWinner = (() => {
+  const draw = "It's a draw!";
+  const playerOneWin = `${gameController.getPlayerOneName()} Wins!`;
+  const playerTwoWin = `${gameController.getPlayerTwoName()} Wins!`;
+
+  const divAnnounce = document.getElementById("ann-win");
+  const displayWinner = () => {
+    let classAdd = false;
+    if (gameEnd.endGame() === draw) {
+      divAnnounce.textContent = draw;
+      classAdd = true;
+    }
+    if (gameEnd.endGame() === playerOneWin) {
+      divAnnounce.textContent = playerOneWin;
+      classAdd = true;
+    }
+    if (gameEnd.endGame() === playerTwoWin) {
+      divAnnounce.textContent = playerTwoWin;
+      classAdd = true;
+    }
+    if (classAdd) divAnnounce.classList.toggle("announceWinner");
+  };
+  const removeAnnouncer = () => {
+    if (divAnnounce.classList.toString() === "announceWinner") {
+      divAnnounce.classList.remove("announceWinner");
+      divAnnounce.textContent = "";
+    }
+  };
+  window.addEventListener("click", removeAnnouncer);
+
+  return { displayWinner };
 })();
