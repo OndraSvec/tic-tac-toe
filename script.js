@@ -22,6 +22,9 @@ const gameController = (() => {
   };
 
   const getPlayerTurn = () => activePlayer;
+  const setPlayerTurn = () => {
+    activePlayer = getPlayerOneName();
+  };
 
   return {
     getPlayerOneName,
@@ -29,6 +32,7 @@ const gameController = (() => {
     getPlayerTwoName,
     getPlayerTwoMark,
     getPlayerTurn,
+    setPlayerTurn,
     switchPlayers,
   };
 })();
@@ -118,6 +122,7 @@ const restartGame = (() => {
   const handleRestartClick = () => {
     gameBoard.setBoard();
     displayGameBoard.updateUIBoard();
+    gameController.setPlayerTurn();
   };
 
   const restartButton = document.getElementById("restartGame");
