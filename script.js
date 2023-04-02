@@ -151,6 +151,7 @@ const announceWinner = (() => {
     if (divAnnounce.classList.toString() === "announceWinner") {
       divAnnounce.classList.remove("announceWinner");
       divAnnounce.textContent = "";
+      restartGame.handleRestartClick();
     }
   };
   window.addEventListener("click", removeAnnouncer);
