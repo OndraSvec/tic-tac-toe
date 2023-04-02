@@ -71,8 +71,12 @@ body {
   scale: 0.95;
 }
 
+#ann-win {
+  position: absolute;
+}
+
 .announceWinner {
-  backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(1rem);
   color: var(--mark-playerTwo);
   font-size: calc(var(--buttons-content) * 0.6);
   text-align: center;
